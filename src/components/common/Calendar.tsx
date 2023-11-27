@@ -24,7 +24,7 @@ const holidays = {
 
 
 function Calendar(props: { data: any, selectedItem: any, indexClick: any }) {
-    const tableRef = useRef()
+    const calendarRef = useRef()
     const [indexExpand, setIndexExpand] = useState({})
     const { data, selectedItem, indexClick } = props
 
@@ -57,10 +57,10 @@ function Calendar(props: { data: any, selectedItem: any, indexClick: any }) {
     };
     const calendars = getDaysArray(minDate.format('MM-DD-YYYY'), maxDate.format('MM-DD-YYYY'))
     setTimeout(() => {
-        if (tableRef && tableRef.current && selectedItem) {
-            tableRef.current.scrollBy({
+        if (calendarRef && calendarRef.current && selectedItem) {
+            calendarRef.current.scrollBy({
                 top: 0,
-                left: (calendars.indexOf(selectedItem.from)) * 52 - tableRef.current.scrollLeft,
+                left: (calendars.indexOf(selectedItem.from)) * 52 - calendarRef.current.scrollLeft,
                 behavior: 'smooth'
             })
         }
@@ -69,15 +69,14 @@ function Calendar(props: { data: any, selectedItem: any, indexClick: any }) {
     setTimeout(() => {
         const table = document.getElementById("mainTable");
         const calendar = document.getElementById("calendar");
-        calendar.addEventListener('scroll', () => {
+        calendar.addEventListener('scroll', (e) => {
             table.scrollTop = calendar.scrollTop
         })
+    }, 0)
 
-
-    }, 500)
     return (
         <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-            <TableContainer id="calendar" ref={tableRef} sx={{ maxHeight: window.innerHeight - 30 }} className="calendar-table">
+            <TableContainer id="calendar" ref={calendarRef} sx={{ maxHeight: window.innerHeight - 30 }} className="calendar-table">
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow style={{ height: 57 }}>

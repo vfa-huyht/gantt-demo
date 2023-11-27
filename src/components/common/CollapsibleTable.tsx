@@ -16,7 +16,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 function Row(props: { row: any, rowClick: any, expandRow: any, index: any }) {
   const { row, rowClick, expandRow, index } = props;
   const [open, setOpen] = React.useState(false);
-  console.log(window.innerHeight)
+
 
   return (
     <React.Fragment>
@@ -71,25 +71,35 @@ function Row(props: { row: any, rowClick: any, expandRow: any, index: any }) {
 }
 export default function CollapsibleTable(props: { data: any, rowClick: any, expandRow: any }) {
   const { data, rowClick, expandRow } = props
+  setTimeout(() => {
+    const table = document.getElementById("mainTable");
+    const calendar = document.getElementById("calendar");
+    table.addEventListener('scroll', (e) => {
+      calendar.scrollTop = table.scrollTop
+
+    })
+  }, 0)
   return (
-    <TableContainer id="mainTable" component={Paper} style={{ maxHeight: window.innerHeight - 30 }}>
-      <Table stickyHeader aria-label="collapsible table">
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell>Assignee</TableCell>
-            <TableCell >Task</TableCell>
-            <TableCell>Detail</TableCell>
-            <TableCell>From</TableCell>
-            <TableCell>To</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map((item: any, index: any) => (
-            <Row key={item.name} row={item} rowClick={rowClick} expandRow={expandRow} index={index} />
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+      <TableContainer id="mainTable" style={{ maxHeight: window.innerHeight - 30 }}>
+        <Table stickyHeader aria-label="collapsible table">
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              <TableCell>Assignee</TableCell>
+              <TableCell >Task</TableCell>
+              <TableCell>Detail</TableCell>
+              <TableCell>From</TableCell>
+              <TableCell>To</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.map((item: any, index: any) => (
+              <Row key={item.name} row={item} rowClick={rowClick} expandRow={expandRow} index={index} />
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Paper>
   );
 }

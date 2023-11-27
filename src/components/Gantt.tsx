@@ -26,6 +26,78 @@ const data = [
     },
     {
         name: 'John',
+        from: '10-01-2023',
+        to: '10-23-2023',
+        task: '...',
+        detail: '...',
+        subtasks: [],
+        status: 2
+    },
+    {
+        name: 'John',
+        from: '10-05-2023',
+        to: '10-28-2023',
+        task: '...',
+        detail: '...',
+        subtasks: [],
+        status: 2
+    },
+    {
+        name: 'John',
+        from: '10-01-2023',
+        to: '10-23-2023',
+        task: '...',
+        detail: '...',
+        subtasks: [],
+        status: 2
+    },
+    {
+        name: 'John',
+        from: '10-05-2023',
+        to: '10-28-2023',
+        task: '...',
+        detail: '...',
+        subtasks: [],
+        status: 2
+    },
+    {
+        name: 'John',
+        from: '10-01-2023',
+        to: '10-23-2023',
+        task: '...',
+        detail: '...',
+        subtasks: [],
+        status: 2
+    },
+    {
+        name: 'John',
+        from: '10-05-2023',
+        to: '10-28-2023',
+        task: '...',
+        detail: '...',
+        subtasks: [],
+        status: 2
+    },
+    {
+        name: 'John',
+        from: '10-01-2023',
+        to: '10-23-2023',
+        task: '...',
+        detail: '...',
+        subtasks: [],
+        status: 2
+    },
+    {
+        name: 'John',
+        from: '10-05-2023',
+        to: '10-28-2023',
+        task: '...',
+        detail: '...',
+        subtasks: [],
+        status: 2
+    },
+    {
+        name: 'John',
         from: '10-11-2023',
         to: '11-01-2023',
         task: '...',
