@@ -13,15 +13,11 @@
     "deploy": "gh-pages -d build"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/actualinc/whereness_cms_frontend.git"
+    "type": "git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/actualinc/whereness_cms_frontend/issues"
-  },
   "homepage": "https://vfa-huyht.github.io/gantt-demo/",
   "dependencies": {
     "@emotion/react": "^11.11.1",

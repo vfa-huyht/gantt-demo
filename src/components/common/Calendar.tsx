@@ -18,6 +18,8 @@ const holidays = {
     '10-09-2023': true,
     '11-03-2023': true,
     '11-23-2023': true,
+    '01-01-2024': true,
+    '01-08-2024': true,
 }
 
 
@@ -45,6 +47,7 @@ function Calendar(props: { data: any, selectedItem: any, indexClick: any }) {
                 }
             })
         }
+        maxDate = moment('01-31-2024');
     })
     const getDaysArray = function (start: any, end: any) {
         for (var arr = [], dt = new Date(start); dt <= new Date(end); dt.setDate(dt.getDate() + 1)) {
