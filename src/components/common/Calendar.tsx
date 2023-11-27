@@ -74,7 +74,7 @@ function Calendar(props: { data: any, selectedItem: any, indexClick: any }) {
     }, 500)
     return (
         <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-            <TableContainer id="calendar" ref={tableRef} sx={{ maxHeight: 900 }} className="calendar-table">
+            <TableContainer id="calendar" ref={tableRef} sx={{ maxHeight: window.innerHeight - 30 }} className="calendar-table">
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow style={{ height: 57 }}>

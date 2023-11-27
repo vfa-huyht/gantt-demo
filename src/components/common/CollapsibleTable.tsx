@@ -16,7 +16,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 function Row(props: { row: any, rowClick: any, expandRow: any, index: any }) {
   const { row, rowClick, expandRow, index } = props;
   const [open, setOpen] = React.useState(false);
-
+  console.log(window.innerHeight)
 
   return (
     <React.Fragment>
@@ -72,7 +72,7 @@ function Row(props: { row: any, rowClick: any, expandRow: any, index: any }) {
 export default function CollapsibleTable(props: { data: any, rowClick: any, expandRow: any }) {
   const { data, rowClick, expandRow } = props
   return (
-    <TableContainer id="mainTable" component={Paper} style={{ maxHeight: 900 }}>
+    <TableContainer id="mainTable" component={Paper} style={{ maxHeight: window.innerHeight - 30 }}>
       <Table stickyHeader aria-label="collapsible table">
         <TableHead>
           <TableRow>
