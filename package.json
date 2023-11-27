@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/actualinc/whereness_cms_frontend/issues"
   },
-  "homepage": "https://vfa-huyht.github.io/react-sample/  ",
+  "homepage": "https://vfa-huyht.github.io/gantt-demo/",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
