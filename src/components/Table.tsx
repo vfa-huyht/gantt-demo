@@ -10,7 +10,7 @@ function Table(props: { data: any, rowClick: any }) {
 		const table = document.getElementById("mainTable");
 		const calendar = document.getElementById("calendar");
 		table?.addEventListener('scroll', (e) => {
-			(calendar as any).scrollTop = table.scrollTop
+			(calendar as any).scrollTop = (table as any).scrollTop
 		})
 	}, 0)
 	return (

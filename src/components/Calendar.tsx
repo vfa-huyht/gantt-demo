@@ -67,7 +67,7 @@ function Calendar(props: { data: any, selectedItem: any }) {
 		const table = document.getElementById("mainTable");
 		const calendar = document.getElementById("calendar");
 		calendar?.addEventListener('scroll', (e) => {
-			(calendar as any).scrollTop = (calendar as any).scrollTop
+			(table as any).scrollTop = (calendar as any).scrollTop
 		})
 	}, 0)
 
@@ -101,7 +101,7 @@ function Calendar(props: { data: any, selectedItem: any }) {
 				</thead>
 				<tbody className="overflow-y-auto">
 					{
-						data.map((item: any) => (
+						data.map((item: any, index: any) => (
 							<tr className="border dark:border-gray-300 h-16 calendar-table__row">
 								{
 									calendars.map((ca: any) => (
@@ -109,14 +109,15 @@ function Calendar(props: { data: any, selectedItem: any }) {
 									))
 								}
 								{
-									item.from !== item.to && <div style={{
-										left: calendars.indexOf(item.from) * 51 + 'px',
-										width: (calendars.indexOf(item.to) + 1 - calendars.indexOf(item.from)) * 51
-									}} className={`calendar-table__progress-bar calendar-table__progress-bar--${item.status === -1 ? 'danger' : item.status === 1 ? 'todo' : 'in'}`}></div>
+									item.from !== item.to && <div
+										title={`from: ${item.from} - to: ${item.to}`} style={{
+											left: calendars.indexOf(item.from) * 51 + 'px',
+											width: (calendars.indexOf(item.to) + 1 - calendars.indexOf(item.from)) * 51
+										}} className={`calendar-table__progress-bar calendar-table__progress-bar--${item.status === -1 ? 'danger' : item.status === 1 ? 'todo' : 'in'}`}></div>
 								}
 								{
 									item.from == item.to &&
-									<div style={{
+									<div title={`${item.from}`} style={{
 										left: calendars.indexOf(item.from) * 51 + 'px',
 									}} className={`calendar-table__milestone calendar-table__milestone--${item.status === -1 ? 'danger' : item.status === 1 ? 'todo' : 'in'}`}></div>
 								}

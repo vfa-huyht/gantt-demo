@@ -24,7 +24,8 @@
 		"recoil": "^0.7.7",
 		"recoil-nexus": "^0.5.0",
 		"sass": "^1.69.5",
-		"tailwind": "^4.0.0"
+		"tailwind": "^4.0.0",
+		"tailwind-elements": "^0.2.0"
 	},
 	"devDependencies": {
 		"@types/node": "^20.8.9",
