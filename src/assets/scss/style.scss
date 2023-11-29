@@ -1,1 +1,78 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+.calendar-table {
+  td, th {
+    border-left: 1px solid rgba(224, 224, 224, 1);
+  }
+  &__row{
+    position: relative;
+  }
+	&__milestone {
+		clip-path: polygon(50% 0%, 100% 51%, 50% 100%, 0% 50%);
+		width: 20px;
+    height: 20px;
+    left: 41px;
+    transform: translate(41px,23px);
+    position: absolute;
+    background: red;
+		&--danger {
+        background-color: purple;
+    }
+    &--todo {
+        background-color: sienna;
+    }
+    &--in {
+        background-color: slateblue;
+    }
+	}
+  &__progress-bar {
+    position: absolute;
+    transform: translateY(30px);
+    width: 50px;
+    height: 5px;
+  cursor: pointer;
+    border-radius: 5px;
+    &--danger {
+        background-color: red;
+    }
+    &--todo {
+        background-color: orange;
+    }
+    &--in {
+        background-color: green;
+    }
+    transition: 0.1s all linear;
+    &:hover {
+      opacity: 0.4
+    }
+  }
+}
+
+#calendar {
+  transition: all 0.5s linear;
+
+}
+
+.calendar-header {
+  position: relative;
+  text-align: center;
+
+  &__month {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+  }
+  &__day {
+    font-weight: 700;
+    font-size: 16px;
+  }
+  &__week {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+     font-size: 10px;
+  }
+}
