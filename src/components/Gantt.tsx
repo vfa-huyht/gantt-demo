@@ -10,8 +10,8 @@ Gantt.propTypes = {
 const data = [
 	{
 		name: 'John',
-		from: '10/01/2023',
-		to: '',
+		from: '10/02/2023',
+		to: '10/02/2023',
 		task: '...',
 		detail: '...',
 		subtasks: [],
@@ -47,7 +47,7 @@ const data = [
 	{
 		name: 'John',
 		from: '10/05/2023',
-		to: '',
+		to: '10/05/2023',
 		task: '...',
 		detail: '...',
 		subtasks: [],
@@ -101,7 +101,7 @@ const data = [
 	{
 		name: 'John',
 		from: '10/11/2023',
-		to: '',
+		to: '10/11/2023',
 		task: '...',
 		detail: '...',
 		subtasks: [],
@@ -259,10 +259,10 @@ function Gantt() {
 	return (
 		<div>
 			<div className="grid grid-cols-2 p-5">
-				<div className="">
+				<div className="px-2">
 					<Table rowClick={getRow} data={data}></Table>
 				</div>
-				<div className="">
+				<div className="px-2">
 					<Calendar selectedItem={selectedItem} data={data}></Calendar>
 				</div>
 			</div>

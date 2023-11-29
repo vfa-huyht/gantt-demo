@@ -12,9 +12,10 @@
 		width: 20px;
     height: 20px;
     left: 41px;
-    transform: translate(41px,23px);
+    transform: translate(-11px,23px);
     position: absolute;
     background: red;
+		z-index: 9999;
 		&--danger {
         background-color: purple;
     }

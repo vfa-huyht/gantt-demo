@@ -1,8 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import moment, { max } from 'moment';
 
 const daysofWeeks = ['月', '火', '水', '木', '金', '土', '日']
-const holidays = {
+const holidays: any = {
 	'10/09/2023': true,
 	'11/03/2023': true,
 	'11/23/2023': true,
@@ -12,7 +12,7 @@ const holidays = {
 
 
 function Calendar(props: { data: any, selectedItem: any }) {
-	const calendarRef = useRef()
+	const calendarRef = useRef(null)
 	const [indexExpand, setIndexExpand] = useState({})
 	const { data, selectedItem } = props
 
@@ -67,9 +67,19 @@ function Calendar(props: { data: any, selectedItem: any }) {
 		const table = document.getElementById("mainTable");
 		const calendar = document.getElementById("calendar");
 		calendar?.addEventListener('scroll', (e) => {
-			(table as any).scrollTop = calendar.scrollTop
+			(calendar as any).scrollTop = (calendar as any).scrollTop
 		})
 	}, 0)
+
+	useEffect(() => {
+
+
+		return () => {
+			if (calendarRef.current) {
+
+			}
+		}
+	}, [calendarRef])
 	return (
 		<div id="calendar" ref={calendarRef} style={{ maxHeight: window.innerHeight - 50 }} className="relative overflow-x-auto shadow-md sm:rounded-lg">
 			<table className=" w-full text-sm text-left rtl:text-right text-gray-500 ">
@@ -99,13 +109,13 @@ function Calendar(props: { data: any, selectedItem: any }) {
 									))
 								}
 								{
-									item.from && item.to && <div style={{
+									item.from !== item.to && <div style={{
 										left: calendars.indexOf(item.from) * 51 + 'px',
 										width: (calendars.indexOf(item.to) + 1 - calendars.indexOf(item.from)) * 51
 									}} className={`calendar-table__progress-bar calendar-table__progress-bar--${item.status === -1 ? 'danger' : item.status === 1 ? 'todo' : 'in'}`}></div>
 								}
 								{
-									item.from && !item.to &&
+									item.from == item.to &&
 									<div style={{
 										left: calendars.indexOf(item.from) * 51 + 'px',
 									}} className={`calendar-table__milestone calendar-table__milestone--${item.status === -1 ? 'danger' : item.status === 1 ? 'todo' : 'in'}`}></div>
