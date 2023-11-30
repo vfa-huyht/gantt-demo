@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 
-function Table(props: { data: any, rowClick: any }) {
-	const { data, rowClick } = props
+
+function Table(props: { data: any, rowClick: any, expandRow: any }) {
+	const { data, rowClick, expandRow } = props
 	const column = ['', 'Assignee', 'Task', 'Detail', 'From', 'To']
+	const [indexExpand, setIndexExpand] = useState<any>({})
 
 	setTimeout(() => {
 		const table = document.getElementById("mainTable");
@@ -29,27 +31,70 @@ function Table(props: { data: any, rowClick: any }) {
 				</thead>
 				<tbody className="overflow-y-auto">
 					{
-						data.map((item: any) => (
-							<tr className="h-16 border dark:border-gray-300" onClick={() => rowClick(item)}>
-								<td className="px-6 py-4">
+						data.map((item: any, index: any) => (
+							<>
+								<tr aria-expanded="true" className="h-16 border dark:border-gray-300" onClick={() => {
 
-								</td>
-								<td className="px-6 py-4">
-									{item.name}
-								</td>
-								<td className="px-6 py-4">
-									{item.task}
-								</td>
-								<td className="px-6 py-4">
-									{item.detail}
-								</td>
-								<td className="px-6 py-4">
-									{item.from}
-								</td>
-								<td className="px-6 py-4">
-									{item.to}
-								</td>
-							</tr>
+									rowClick(item)
+								}}>
+									<td className="px-6 py-4">
+										{item.subtasks && item.subtasks.length > 0 && <button onClick={e => {
+											expandRow(index)
+											e.preventDefault()
+											setIndexExpand((indexExpand: any) => {
+												const temp: any = { ...indexExpand }
+												temp[index] = !temp[index]
+												return temp
+											})
+										}}>
+											<i style={{
+												transform: 'translateY(8px)'
+											}} className="chevron"></i>
+
+										</button>}
+									</td>
+									<td className="px-6 py-4">
+										{item.name}
+									</td>
+									<td className="px-6 py-4">
+										{item.task}
+									</td>
+									<td className="px-6 py-4">
+										{item.detail}
+									</td>
+									<td className="px-6 py-4">
+										{item.from}
+									</td>
+									<td className="px-6 py-4">
+										{item.to}
+									</td>
+								</tr>
+								{
+									indexExpand[index] && item.subtasks && item.subtasks.length > 0 && item.subtasks.map((i: any) => (
+										<tr aria-expanded="true" className="h-16 border dark:border-gray-300" onClick={() => rowClick(item)}>
+											<td className="px-6 py-4">
+											</td>
+											<td className="px-6 py-4">
+												{i.name}
+											</td>
+											<td className="px-6 py-4">
+												{i.task}
+											</td>
+											<td className="px-6 py-4">
+												{i.detail}
+											</td>
+											<td className="px-6 py-4">
+												{i.from}
+											</td>
+											<td className="px-6 py-4">
+												{i.to}
+											</td>
+										</tr>
+									))
+
+								}
+
+							</>
 						))
 					}
 

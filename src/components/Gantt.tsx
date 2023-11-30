@@ -253,17 +253,25 @@ const data = [
 
 function Gantt() {
 	const [selectedItem, setselectedItem] = useState()
+	const [indexClick, setIndexClick] = useState({})
 	const getRow = (item: any) => {
 		setselectedItem(item)
+	}
+	const expandRow = (index: any) => {
+		setIndexClick(i => {
+			const temp: any = { ...i }
+			temp[index] = !temp[index]
+			return temp
+		})
 	}
 	return (
 		<div>
 			<div className="grid grid-cols-2 p-5">
 				<div className="px-2">
-					<Table rowClick={getRow} data={data}></Table>
+					<Table expandRow={expandRow} rowClick={getRow} data={data}></Table>
 				</div>
 				<div className="px-2">
-					<Calendar selectedItem={selectedItem} data={data}></Calendar>
+					<Calendar indexClick={indexClick} selectedItem={selectedItem} data={data}></Calendar>
 				</div>
 			</div>
 		</div>

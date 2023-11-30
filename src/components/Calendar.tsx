@@ -11,10 +11,10 @@ const holidays: any = {
 }
 
 
-function Calendar(props: { data: any, selectedItem: any }) {
+function Calendar(props: { data: any, selectedItem: any, indexClick: any }) {
 	const calendarRef = useRef(null)
 	const [indexExpand, setIndexExpand] = useState({})
-	const { data, selectedItem } = props
+	const { data, selectedItem, indexClick } = props
 
 	let minDate = moment();
 	let maxDate = moment('01/01/2023');
@@ -102,27 +102,54 @@ function Calendar(props: { data: any, selectedItem: any }) {
 				<tbody className="overflow-y-auto">
 					{
 						data.map((item: any, index: any) => (
-							<tr className="border dark:border-gray-300 h-16 calendar-table__row">
-								{
-									calendars.map((ca: any) => (
-										<td className="border dark:border-gray-300" style={{ minWidth: 50, padding: 0, backgroundColor: `${holidays[ca] || moment(ca).isoWeekday() === 6 || moment(ca).isoWeekday() === 7 ? '#E8E8E8' : 'none'}` }}></td>
-									))
-								}
-								{
-									item.from !== item.to && <div
-										title={`from: ${item.from} - to: ${item.to}`} style={{
+							<>
+								<tr className="border dark:border-gray-300 h-16 calendar-table__row">
+									{
+										calendars.map((ca: any) => (
+											<td className="border dark:border-gray-300" style={{ minWidth: 50, padding: 0, backgroundColor: `${holidays[ca] || moment(ca).isoWeekday() === 6 || moment(ca).isoWeekday() === 7 ? '#E8E8E8' : 'none'}` }}></td>
+										))
+									}
+									{
+										item.from !== item.to && <div
+											title={`from: ${item.from} - to: ${item.to}`} style={{
+												left: calendars.indexOf(item.from) * 51 + 'px',
+												width: (calendars.indexOf(item.to) + 1 - calendars.indexOf(item.from)) * 51
+											}} className={`calendar-table__progress-bar calendar-table__progress-bar--${item.status === -1 ? 'danger' : item.status === 1 ? 'todo' : 'in'}`}></div>
+									}
+									{
+										item.from == item.to &&
+										<div title={`${item.from}`} style={{
 											left: calendars.indexOf(item.from) * 51 + 'px',
-											width: (calendars.indexOf(item.to) + 1 - calendars.indexOf(item.from)) * 51
-										}} className={`calendar-table__progress-bar calendar-table__progress-bar--${item.status === -1 ? 'danger' : item.status === 1 ? 'todo' : 'in'}`}></div>
-								}
-								{
-									item.from == item.to &&
-									<div title={`${item.from}`} style={{
-										left: calendars.indexOf(item.from) * 51 + 'px',
-									}} className={`calendar-table__milestone calendar-table__milestone--${item.status === -1 ? 'danger' : item.status === 1 ? 'todo' : 'in'}`}></div>
-								}
+										}} className={`calendar-table__milestone calendar-table__milestone--${item.status === -1 ? 'danger' : item.status === 1 ? 'todo' : 'in'}`}></div>
+									}
 
-							</tr>
+								</tr>
+								{
+									indexClick[index] && item.subtasks && item.subtasks.length > 0 && item.subtasks.map((i: any) => (
+										<tr aria-expanded="true" className="h-16 border dark:border-gray-300">
+											{
+												calendars.map((ca: any) => (
+													<td className="border dark:border-gray-300" style={{ minWidth: 50, padding: 0, backgroundColor: `${holidays[ca] || moment(ca).isoWeekday() === 6 || moment(ca).isoWeekday() === 7 ? '#E8E8E8' : 'none'}` }}></td>
+												))
+											}
+											{
+												i.from !== i.to && <div
+													title={`from: ${i.from} - to: ${i.to}`} style={{
+														left: calendars.indexOf(i.from) * 51 + 'px',
+														width: (calendars.indexOf(i.to) + 1 - calendars.indexOf(i.from)) * 51
+													}} className={`calendar-table__progress-bar calendar-table__progress-bar--${i.status === -1 ? 'danger' : i.status === 1 ? 'todo' : 'in'}`}></div>
+											}
+											{
+												i.from == i.to &&
+												<div title={`${i.from}`} style={{
+													left: calendars.indexOf(i.from) * 51 + 'px',
+												}} className={`calendar-table__milestone calendar-table__milestone--${i.status === -1 ? 'danger' : i.status === 1 ? 'todo' : 'in'}`}></div>
+											}
+										</tr>
+									))
+
+								}
+							</>
 						))
 					}
 
