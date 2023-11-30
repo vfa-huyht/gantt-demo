@@ -71,7 +71,7 @@ function Table(props: { data: any, rowClick: any, expandRow: any }) {
 								</tr>
 								{
 									indexExpand[index] && item.subtasks && item.subtasks.length > 0 && item.subtasks.map((i: any) => (
-										<tr aria-expanded="true" className="h-16 border dark:border-gray-300" onClick={() => rowClick(item)}>
+										<tr aria-expanded="true" className="h-16 border dark:border-gray-300" onClick={() => rowClick(i)}>
 											<td className="px-6 py-4">
 											</td>
 											<td className="px-6 py-4">
